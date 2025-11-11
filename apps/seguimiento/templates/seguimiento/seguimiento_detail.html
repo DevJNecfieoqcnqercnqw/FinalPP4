@@ -1,0 +1,80 @@
+{% block content %}
+
+
+<style>
+    body {
+        background: #ffffff; 
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    * {
+        font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+        font-size: 21px;
+        color: #000000; 
+    }
+
+    .container {
+        background-color: #ffffff; 
+        border: 2px solid #d5d5d5; 
+        border-radius: 20px;
+        text-align: center;
+        width: 450px;
+        height: auto;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        position: relative;
+    }
+
+    .flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 0;
+    }
+
+    h2,
+    h5 {
+        font-size: 25px;
+        font-weight: 800;
+        color: #000000; /* Asegura que los títulos también sean negros */
+    }
+
+    li {
+        list-style: none;
+        margin-left: -27px;
+    }
+</style>
+
+
+<header>
+
+</header>
+<div class="flex">
+    <div class="container mt-5">
+        <h2 class="text-center">Estado del Envío</h2>
+        <div class="card mt-4">
+            <div class="card-header">
+                Orden {{ orden.id }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Estado: {{ orden.envio.estado }}</h5>
+                <p class="card-text">Fecha de Envío: {{ orden.envio.fecha_envio|date:"d/m/Y H:i" }}</p>
+                <p class="card-text">Fecha de Entrega: {{ orden.envio.fecha_entrega|date:"d/m/Y H:i" }}</p>
+                
+                <ul>
+                    {% for detalle in orden.detalles.all %}
+                    <li>{{ detalle.producto.nombre }} - Cantidad: {{ detalle.cantidad }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

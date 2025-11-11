@@ -1,0 +1,358 @@
+{% load static %}
+
+<!doctype html>
+<html class="no-js" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}Sistema de Logística{% endblock %}</title>
+    <meta name="description" content="Soluciones integrales de logística y transporte.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles2.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles2.css' %}">
+<style>
+
+        :root {
+            --azul-principal: #004aad;
+            --azul-oscuro: #002d6b;
+            --azulArriba: #5576fb; 
+            --celeste: #00b4ff;
+            --gris: #f8f9fc;
+            --blanco: #ffffff;
+            --negro: #1c1c1c;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--gris);
+            color: var(--negro);
+            overflow-x: hidden;
+        }
+    
+    header, 
+    .main-header, 
+    .menu-area, 
+    .header-bottom-info {
+        background-color: #5576fb !important; /* azul */
+    }
+
+    .main-menu a {
+        color: white !important; 
+    }
+
+    .main-menu a:hover {
+        color: white !important; 
+    }
+</style>
+
+
+    <style>
+        /* === Franja inferior del header === */
+        .header-bottom-info {
+            background-color: #e9e9e9; 
+            color: #ffffff;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            font-family: ''Poppins', sans-serif Neue', sans-serif;
+            
+        }
+
+        /* === Widget=== */
+        .widget-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            
+        }
+
+        .hora-fecha {
+            text-align: right;
+        }
+
+        .hora {
+            font-size: 22px;
+            font-weight: bold;
+            line-height: 1;
+        }   
+
+        .fecha {
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .clima {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+        }
+
+        .clima img {
+            width: 36px;
+            height: 36px;
+            filter: brightness(0) invert(1);
+        }
+
+        .widget-container:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+
+        
+        
+        /* SECCIONES */
+        .services-area, .solutions {
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .services-area {
+            background-color: var(--gris);
+        }
+
+        .solutions {
+            background: var(--blanco);
+        }
+
+        .s-section-title h2,
+        .solutions h2 {
+            font-size: 42px;
+            color: var(--azul-oscuro);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .s-section-title p,
+        .solutions p {
+            color: #7e7e7f;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .solution-card {
+            
+            border-radius: 16px;
+            padding: 40px 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .solution-card:hover {
+            background: var(--gris);
+            color: var(--blanco);
+            transform: translateY(-8px);
+        }
+
+        .solution-card i {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--celeste);
+        }
+
+        .solution-card:hover i {
+            color: var(--blanco);
+        }
+
+        /* PIE */
+        footer {
+            background: var(--azulArriba);
+            color: var(--blanco);
+            text-align: center;
+            padding: 30px 0;
+            font-size: 15px;
+        }
+
+        footer a {
+            color: var(--celeste);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--blanco);
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .s-slider-content h2 { font-size: 48px; }
+            .globe-container { width: 240px; height: 240px; }
+            .slider-golve-bike { transform-origin: -120px center; }
+        }
+    </style>
+    </style>
+
+    
+</head>
+<body>
+
+<header>
+    <div id="header-sticky" class="main-header">
+        <div class="container-fluid header-container-p">
+            <div class="row align-items-center">
+                <div class="col-lg-2 col-md-6">
+                    <div class="menu-area">
+                        <div class="main-menu">
+                            <nav id="mobile-menu">
+                                <ul>
+                                 <li><a href="{% url 'login' %}" style="font-size: 21px;">Iniciar</a></li>
+                                 <li><a href="{% url 'seguimiento_form' %}" style="font-size: 21px;">Seguir Envío</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="mobile-menu"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Franja inferior con widget -->
+            <div class="header-bottom-info" >
+            <div class="widget-container" onclick="window.open('https://weather.com/es-AR/clima/hoy', '_blank')">
+                <div class="hora-fecha">
+                    <div class="hora" id="hora"></div>
+                    <div class="fecha" id="fecha"></div>
+                </div>
+                <div class="clima">
+                    <img id="icono-clima" src="" alt="Clima">
+                    <span id="temp"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main>
+    <section class="s-slider-area">
+        <div class="s-slider-bg fix" style="background-image: url(../img/slider/slider_img03.jpg);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div class="s-slider-content">
+                            <h6><span class="dots"></span>Logística de envío<span class="dots2"></span></h6>
+                            <h2 class="frame-1"><span>SISTEMA</span></h2>
+                            <h2 class="frame-2"><span>DE LOGÍSTICA</span></h2>
+                            <h2 class="frame-3"><span>PP4</span></h2>
+                            <h2 class="frame-4"><span>2025</span></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="icon-scroll"><span></span><span></span><span></span></a>
+            <div class="slider-golve">
+                <img src="{% static 'assets/images/slider/golve.png' %}" class="rotateme" alt="">
+            </div>
+            <div class="slider-golve-bike">
+                <img src="{% static 'assets/images/slider/bike.png' %}" alt="">
+            </div>
+            <div class="slide-golve-car">
+                <img src="{% static 'assets/images/slider/car.png' %}" alt="">
+            </div>
+            <div class="slider-plane">
+                <img src="{% static 'assets/images/slider/plane.png' %}" alt="">
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // === HORA Y FECHA ===
+    function actualizarHoraFecha() {
+        const ahora = new Date();
+        const opcionesFecha = { weekday: 'short', day: 'numeric', month: 'short' };
+        const hora = ahora.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
+        const fecha = ahora.toLocaleDateString('es-AR', opcionesFecha);
+        document.getElementById("hora").textContent = hora;
+        document.getElementById("fecha").textContent = fecha;
+    }
+    setInterval(actualizarHoraFecha, 1000);
+    actualizarHoraFecha();
+
+    // === CLIMA ===
+    const API_KEY = "c1ee91060e4c91468e4c9e09e723c923";
+    const ciudad = "Buenos Aires,AR";
+
+    async function obtenerClima() {
+        try {
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${API_KEY}&units=metric&lang=es`;
+            const res = await fetch(url);
+            const data = await res.json();
+            if (data.cod !== 200) throw new Error(data.message);
+            const temp = Math.round(data.main.temp);
+            const icono = data.weather[0].icon;
+            document.getElementById("temp").textContent = `${temp}°C`;
+            document.getElementById("icono-clima").src = `https://openweathermap.org/img/wn/${icono}@2x.png`;
+        } catch (error) {
+            console.error("Error obteniendo clima:", error);
+        }
+    }
+
+    obtenerClima();
+    setInterval(obtenerClima, 30 * 60 * 1000);
+});
+</script>
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="services-area">
+        <div class="container">
+            <div class="s-section-title mb-60">
+                <h2>Seguimiento de Envíos</h2>
+                <p>Consulta el estado de tu envío y verifica las fechas de entrega estimadas con nuestro sistema de seguimiento en tiempo real.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUCIONES -->
+    <section class="solutions">
+        <div class="container">
+            <h2>Nuestras Soluciones</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="solution-card">
+                        <i class="fas fa-route"></i>
+                        <h4>Seguimiento Inteligente</h4>
+                        <p>Monitorea cada movimiento de tus envíos con información actualizada en tiempo real y alertas automáticas.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="solution-card">
+                        <i class="fas fa-cogs"></i>
+                        <h4>Optimización de Rutas</h4>
+                        <p>Algoritmos de IA que reducen tiempos y costos, garantizando entregas más rápidas y sostenibles.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="solution-card">
+                        <i class="fas fa-globe-americas"></i>
+                        <h4>Cobertura Global</h4>
+                        <p>Conectamos tu negocio con el mundo, ofreciendo transporte eficiente por tierra, aire y mar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- FOOTER -->
+    <footer>
+        © 2025 Sistema de Logística — Desarrollado por Johnny- Ifts18 2025 |
+        <a href="{% url 'home' %}">Inicio</a>
+    </footer>
+
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/aos.js' %}"></script>
+    <script>AOS.init();</script>
+</body>
+</html>
